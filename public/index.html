@@ -8,42 +8,35 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:         #f4f3ef;
-  --surface:    #ffffff;
-  --surface2:   #eeede8;
-  --border:     rgba(0,0,0,0.09);
-  --border2:    rgba(0,0,0,0.16);
-  --text:       #181815;
-  --text2:      #666661;
-  --text3:      #9e9e98;
-  --accent:     #1a4f99;
-  --green-bg:   #e6f4dc; --green-tx: #2a6610;
-  --red-bg:     #fce8e8; --red-tx:   #952020;
-  --amber-bg:   #fef1d6; --amber-tx: #7a4b08;
-  --blue-bg:    #e4eefc; --blue-tx:  #1a4f99;
+  --bg:       #f4f3ef; --surface:  #ffffff; --surface2: #eeede8;
+  --border:   rgba(0,0,0,0.09); --border2: rgba(0,0,0,0.16);
+  --text:     #181815; --text2:    #666661; --text3:    #9e9e98;
+  --accent:   #1a4f99;
+  --green-bg: #e6f4dc; --green-tx: #2a6610;
+  --red-bg:   #fce8e8; --red-tx:   #952020;
+  --amber-bg: #fef1d6; --amber-tx: #7a4b08;
+  --blue-bg:  #e4eefc; --blue-tx:  #1a4f99;
+  --grey-bg:  #e8e8e4; --grey-tx:  #55554e;
   --mono: 'Courier New', monospace;
 }
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #121210; --surface: #1c1c19; --surface2: #242420;
     --border: rgba(255,255,255,0.07); --border2: rgba(255,255,255,0.13);
-    --text: #e6e6de; --text2: #92928a; --text3: #56564f;
-    --accent: #6e9fe0;
+    --text: #e6e6de; --text2: #92928a; --text3: #56564f; --accent: #6e9fe0;
     --green-bg: #142b08; --green-tx: #7cc454;
     --red-bg:   #2a1010; --red-tx:   #e47070;
     --amber-bg: #281a04; --amber-tx: #e0a03a;
     --blue-bg:  #0e1e38; --blue-tx:  #6e9fe0;
+    --grey-bg:  #2a2a26; --grey-tx:  #9a9a90;
   }
 }
 
 body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); }
 
-/* ── Header ── */
 header {
-  background: var(--surface);
-  border-bottom: 0.5px solid var(--border2);
-  padding: 1rem 2rem;
-  display: flex; align-items: center; gap: 14px;
+  background: var(--surface); border-bottom: 0.5px solid var(--border2);
+  padding: 1rem 2rem; display: flex; align-items: center; gap: 14px;
   position: sticky; top: 0; z-index: 10;
 }
 .logo { width: 34px; height: 34px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
@@ -51,89 +44,74 @@ header {
 .header-text h1 { font-size: 15px; font-weight: 600; }
 .header-text p  { font-size: 12px; color: var(--text2); margin-top: 1px; }
 .header-badge { margin-left: auto; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 99px; background: var(--surface2); color: var(--text3); }
-.header-badge.running { background: var(--blue-bg); color: var(--blue-tx); }
-.header-badge.done-ok { background: var(--green-bg); color: var(--green-tx); }
+.header-badge.running   { background: var(--blue-bg);  color: var(--blue-tx);  }
+.header-badge.done-ok   { background: var(--green-bg); color: var(--green-tx); }
 .header-badge.done-warn { background: var(--amber-bg); color: var(--amber-tx); }
 
-/* ── Layout ── */
 main { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
 
-/* ── Metrics ── */
 .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 1.5rem; }
 @media (max-width: 580px) { .metrics { grid-template-columns: repeat(2,1fr); } }
 .metric { background: var(--surface); border: 0.5px solid var(--border); border-radius: 10px; padding: 1rem; }
 .metric-label { font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
 .metric-val   { font-size: 26px; font-weight: 600; color: var(--text); font-variant-numeric: tabular-nums; }
 
-/* ── Bouton ── */
-.controls { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; }
+.controls { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; flex-wrap: wrap; }
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
   background: var(--accent); color: #fff; border: none;
-  border-radius: 8px; padding: 10px 22px;
-  font-size: 14px; font-weight: 500; cursor: pointer;
-  transition: opacity .15s;
+  border-radius: 8px; padding: 10px 20px;
+  font-size: 14px; font-weight: 500; cursor: pointer; transition: opacity .15s;
 }
-.btn:hover   { opacity: .87; }
+.btn:hover    { opacity: .87; }
 .btn:disabled { opacity: .4; cursor: not-allowed; }
 .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
-.hint { font-size: 12px; color: var(--text3); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--surface); color: var(--text2);
+  border: 0.5px solid var(--border2); border-radius: 8px;
+  padding: 9px 18px; font-size: 13px; font-weight: 500; cursor: pointer; transition: background .15s;
+}
+.btn-secondary:hover    { background: var(--surface2); }
+.btn-secondary:disabled { opacity: .4; cursor: not-allowed; }
+.btn-secondary svg { width: 15px; height: 15px; flex-shrink: 0; }
 
-/* ── Progress ── */
 .progress-wrap { height: 3px; background: var(--surface2); border-radius: 99px; overflow: hidden; margin-bottom: 1.5rem; }
 .progress-bar  { height: 100%; width: 0; background: var(--accent); border-radius: 99px; transition: width .2s ease; }
 
-/* ── Sections ── */
 .section-label { font-size: 11px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.06em; margin: 1.25rem 0 8px; }
 .card { background: var(--surface); border: 0.5px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 10px; }
-.card-title { font-size: 12px; font-weight: 600; color: var(--text2); padding: 10px 1rem 0; text-transform: uppercase; letter-spacing: 0.04em; }
 
-/* ── Lignes de résultats ── */
-.row {
-  display: grid;
-  grid-template-columns: 36px 1fr 90px 80px 80px;
-  align-items: center;
-  gap: 8px;
-  padding: 9px 1rem;
-  border-bottom: 0.5px solid var(--border);
-  font-size: 13px;
-}
+.row { display: grid; grid-template-columns: 36px 1fr 90px 80px 90px; align-items: center; gap: 8px; padding: 9px 1rem; border-bottom: 0.5px solid var(--border); font-size: 13px; }
 .row:last-child { border-bottom: none; }
-@media (max-width: 580px) {
-  .row { grid-template-columns: 28px 1fr 70px 72px; }
-  .row .col-ms { display: none; }
-}
+@media (max-width: 580px) { .row { grid-template-columns: 28px 1fr 70px 80px; } .row .col-ms { display: none; } }
 .row-icon { width: 28px; height: 28px; border-radius: 6px; background: var(--surface2); display: flex; align-items: center; justify-content: center; }
 .row-icon svg { width: 14px; height: 14px; stroke: var(--text2); }
 .row-main strong { display: block; font-size: 13px; font-weight: 500; color: var(--text); }
 .row-main code  { font-size: 11px; color: var(--text2); font-family: var(--mono); }
 .col-proto { font-size: 11px; font-family: var(--mono); color: var(--text3); text-align: center; }
 .col-ms    { font-size: 12px; font-family: var(--mono); color: var(--text2); text-align: right; }
-.badge {
-  display: inline-flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 600; padding: 3px 10px;
-  border-radius: 99px; white-space: nowrap;
-}
-.b-wait  { background: var(--surface2); color: var(--text3); }
-.b-ok    { background: var(--green-bg); color: var(--green-tx); }
-.b-fail  { background: var(--red-bg);   color: var(--red-tx);   }
-.b-warn  { background: var(--amber-bg); color: var(--amber-tx); }
 
-/* ── WebRTC chips ── */
+.badge { display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 99px; white-space: nowrap; }
+.b-wait { background: var(--surface2); color: var(--text3); }
+.b-ok   { background: var(--green-bg); color: var(--green-tx); }
+.b-fail { background: var(--red-bg);   color: var(--red-tx);   }
+.b-warn { background: var(--amber-bg); color: var(--amber-tx); }
+.b-na   { background: var(--grey-bg);  color: var(--grey-tx);  cursor: help; }
+
 .chip-bar { display: flex; gap: 6px; flex-wrap: wrap; padding: 1rem; }
 .chip { font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 99px; border: 0.5px solid var(--border2); color: var(--text2); background: var(--surface2); }
 .chip.ok   { background: var(--green-bg); color: var(--green-tx); border-color: transparent; }
 .chip.fail { background: var(--red-bg);   color: var(--red-tx);   border-color: transparent; }
 
-/* ── ICE ── */
-.ice-wrap { padding: 0 1rem 1rem; }
+.ice-wrap  { padding: 0 1rem 1rem; }
 .ice-label { font-size: 12px; color: var(--text2); margin-bottom: 6px; }
 
-/* ── Note ── */
 .note { font-size: 11px; color: var(--text3); padding: 8px 1rem; border-top: 0.5px solid var(--border); line-height: 1.6; }
 
-/* ── Log ── */
-.log-wrap { background: var(--surface); border: 0.5px solid var(--border); border-radius: 10px; padding: 1rem; max-height: 200px; overflow-y: auto; font-family: var(--mono); font-size: 11.5px; line-height: 1.7; }
+/* Journal */
+.log-header { display: flex; align-items: center; justify-content: space-between; margin: 1.25rem 0 8px; }
+.log-wrap { background: var(--surface); border: 0.5px solid var(--border); border-radius: 10px; padding: 1rem; max-height: 220px; overflow-y: auto; font-family: var(--mono); font-size: 11.5px; line-height: 1.7; }
 .l-ok   { color: var(--green-tx); }
 .l-fail { color: var(--red-tx);   }
 .l-warn { color: var(--amber-tx); }
@@ -143,7 +121,6 @@ main { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
 footer { text-align: center; font-size: 11px; color: var(--text3); padding: 2rem 0 3rem; }
 footer a { color: var(--accent); }
 
-/* spin animation */
 @keyframes spin { to { transform: rotate(360deg); } }
 .spin { animation: spin 1s linear infinite; display: inline-block; }
 </style>
@@ -156,13 +133,12 @@ footer a { color: var(--accent); }
   </div>
   <div class="header-text">
     <h1>Diagnostic réseau — visio.numerique.gouv.fr</h1>
-    <p>Tests TCP, UDP, HTTPS et WebRTC côté serveur et navigateur</p>
+    <p>Tests TCP, UDP, HTTPS côté serveur + WebRTC navigateur</p>
   </div>
   <span class="header-badge" id="status-badge">Prêt</span>
 </header>
 
 <main>
-
   <div class="metrics">
     <div class="metric"><div class="metric-label">Tests OK</div><div class="metric-val" id="m-ok">—</div></div>
     <div class="metric"><div class="metric-label">Échoués</div><div class="metric-val" id="m-fail">—</div></div>
@@ -175,85 +151,114 @@ footer a { color: var(--accent); }
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
       Lancer les tests
     </button>
-    <span class="hint">Les tests TCP/UDP s'exécutent côté serveur — résultats fiables à 100 %</span>
+    <button class="btn-secondary" id="btn-export" onclick="exportLog()" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Exporter le journal (.txt)
+    </button>
   </div>
 
   <div class="progress-wrap"><div class="progress-bar" id="prog"></div></div>
 
-  <!-- Serveur applicatif -->
   <div class="section-label">Serveur applicatif</div>
   <div class="card" id="grp-app"></div>
 
-  <!-- Signaling -->
   <div class="section-label">Signaling LiveKit</div>
   <div class="card" id="grp-signaling"></div>
 
-  <!-- Media nodes -->
-  <div class="section-label">Nœuds média (ICE/TCP 7881 · ICE/UDP 50000+ · TURN/TLS 443)</div>
+  <div class="section-label">Nœuds média (ICE/TCP 7881 · TURN/TLS 443 · ICE/UDP)</div>
   <div class="card" id="grp-media">
-    <div class="note">Les tests UDP envoient un paquet STUN minimal — une réponse confirme que le port est ouvert et joignable.</div>
+    <div class="note">ℹ️ Les ports ICE/UDP n'acceptent que des paquets STUN avec credentials valides issus d'une session WebRTC active. Ils sont marqués « Non testable » — ce n'est pas une erreur réseau. Vérifiez-les via le test ICE relay ci-dessous.</div>
   </div>
 
-  <!-- CoTurn -->
   <div class="section-label">Serveurs CoTurn</div>
   <div class="card" id="grp-coturn">
     <div class="note">TCP et UDP testés séparément sur le port 443.</div>
   </div>
 
-  <!-- WebRTC navigateur -->
   <div class="section-label">Capacités WebRTC du navigateur</div>
   <div class="card">
     <div class="chip-bar" id="rtc-chips"></div>
     <div class="ice-wrap">
-      <div class="ice-label">Candidats ICE collectés (STUN + tentative TURN)</div>
+      <div class="ice-label">Candidats ICE collectés (STUN + tentative TURN relay)</div>
       <div id="ice-result" class="chip-bar">—</div>
     </div>
-    <div class="note">Le test ICE s'exécute dans votre navigateur et confirme la traversée NAT réelle.</div>
+    <div class="note">Le test ICE s'exécute dans votre navigateur. Un candidat « TURN relay » confirme que les flux passeront même derrière un réseau restrictif.</div>
   </div>
 
-  <!-- Log -->
-  <div class="section-label">Journal</div>
+  <div class="log-header">
+    <span class="section-label" style="margin:0">Journal</span>
+  </div>
   <div class="log-wrap" id="log"></div>
 
 </main>
 
 <footer>
   Contact : <a href="mailto:reseau-visio@numerique.gouv.fr">reseau-visio@numerique.gouv.fr</a> —
-  Débug WebRTC : <a href="chrome://webrtc-internals/" target="_blank">chrome://webrtc-internals</a> /
+  Débug : <a href="chrome://webrtc-internals/" target="_blank">chrome://webrtc-internals</a> /
   <a href="about:webrtc" target="_blank">about:webrtc</a> (Firefox)
 </footer>
 
 <script>
-// ── État global ──────────────────────────────────────────────────────────────
+// ── État ─────────────────────────────────────────────────────────────────────
 let okCount = 0, failCount = 0, warnCount = 0, rowIndex = 0;
+let logLines = []; // buffer pour l'export
+
+// ── SVG icons ────────────────────────────────────────────────────────────────
+const ICONS = {
+  https: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z"/></svg>',
+  tcp:   '<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>',
+  udp:   '<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>',
+};
 
 // ── Log ──────────────────────────────────────────────────────────────────────
 function log(msg, cls = 'l-info') {
+  const ts   = new Date().toLocaleTimeString('fr-FR');
+  const line = `[${ts}] ${msg}`;
+  logLines.push(line);
+
   const el = document.getElementById('log');
   const p  = document.createElement('p');
   p.style.margin = '0';
-  p.className = cls;
-  p.textContent = '[' + new Date().toLocaleTimeString('fr-FR') + '] ' + msg;
+  p.className    = cls;
+  p.textContent  = line;
   el.appendChild(p);
   el.scrollTop = el.scrollHeight;
 }
 
-// ── Métriques ────────────────────────────────────────────────────────────────
+// ── Export journal ────────────────────────────────────────────────────────────
+function exportLog() {
+  const header = [
+    'Diagnostic réseau — visio.numerique.gouv.fr',
+    'Date : ' + new Date().toLocaleString('fr-FR'),
+    'Navigateur : ' + navigator.userAgent,
+    '─'.repeat(60),
+    '',
+  ].join('\n');
+
+  const content = header + logLines.join('\n');
+  const blob    = new Blob([content], { type: 'text/plain;charset=utf-8' });
+  const url     = URL.createObjectURL(blob);
+  const a       = document.createElement('a');
+  const date    = new Date().toISOString().slice(0,19).replace(/:/g,'-');
+  a.href        = url;
+  a.download    = `diagnostic-visio-${date}.txt`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ── Métriques ─────────────────────────────────────────────────────────────────
 function updateMetrics() {
   document.getElementById('m-ok').textContent   = okCount;
   document.getElementById('m-fail').textContent = failCount;
   document.getElementById('m-warn').textContent = warnCount;
 }
 
-// ── Création d'une ligne vide ─────────────────────────────────────────────────
+// ── Ligne de résultat ─────────────────────────────────────────────────────────
 function makeRow(id, label, host, port, proto) {
-  const icons = {
-    https: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z"/></svg>',
-    tcp:   '<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>',
-    udp:   '<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>',
-  };
   return `<div class="row" id="row-${id}">
-    <div class="row-icon">${icons[proto] || icons.tcp}</div>
+    <div class="row-icon">${ICONS[proto] || ICONS.tcp}</div>
     <div class="row-main">
       <strong>${label}</strong>
       <code>${host}:${port}</code>
@@ -264,34 +269,33 @@ function makeRow(id, label, host, port, proto) {
   </div>`;
 }
 
-function setRow(id, ok, ms, isUDP) {
-  const b  = document.getElementById('badge-' + id);
-  const ms_el = document.getElementById('ms-' + id);
+function setRow(id, data) {
+  const b    = document.getElementById('badge-' + id);
+  const msEl = document.getElementById('ms-' + id);
 
-  // UDP : on considère timeout comme "warn" (pas de réponse STUN ≠ port fermé forcément)
-  let state, cls, txt;
-  if (ok) {
-    state = 'ok'; cls = 'b-ok'; txt = '✓ OK';
-    okCount++;
-  } else if (isUDP) {
-    state = 'warn'; cls = 'b-warn'; txt = '⚠ No reply';
-    warnCount++;
+  let cls, txt, logCls;
+
+  if (data.untestable) {
+    cls = 'b-na'; txt = 'ℹ Non testable'; logCls = 'l-info';
+    // pas de comptage dans les métriques
+  } else if (data.ok) {
+    cls = 'b-ok'; txt = '✓ OK'; logCls = 'l-ok'; okCount++;
+  } else if (data.proto === 'udp') {
+    cls = 'b-warn'; txt = '⚠ No reply'; logCls = 'l-warn'; warnCount++;
   } else {
-    state = 'fail'; cls = 'b-fail'; txt = '✗ Échec';
-    failCount++;
+    cls = 'b-fail'; txt = '✗ Échec'; logCls = 'l-fail'; failCount++;
   }
 
-  if (b)    b.innerHTML = `<span class="badge ${cls}">${txt}</span>`;
-  if (ms_el && ms != null) ms_el.textContent = ms + ' ms';
+  if (b)    b.innerHTML = `<span class="badge ${cls}" title="${data.untestable ? 'Ces ports nécessitent une session WebRTC active pour répondre' : (data.err || '')}">${txt}</span>`;
+  if (msEl && data.ms != null) msEl.textContent = data.ms + ' ms';
+
   updateMetrics();
+  return logCls;
 }
 
-// ── Tests côté serveur (SSE) ─────────────────────────────────────────────────
+// ── Tests serveur (SSE) ───────────────────────────────────────────────────────
 function runServerTests() {
   return new Promise(resolve => {
-    const groups  = { app: [], signaling: [], media: [], coturn: [] };
-    const pending = {};
-
     const es = new EventSource('/api/test');
 
     es.onmessage = e => {
@@ -303,43 +307,30 @@ function runServerTests() {
       }
 
       if (data.type === 'result') {
-        const id = 'srv-' + rowIndex++;
-        const g  = groups[data.group];
-
-        if (!g._init) {
-          g._init = true;
-          document.getElementById('grp-' + data.group).insertAdjacentHTML('afterbegin', '');
-        }
-
+        const id        = 'srv-' + rowIndex++;
         const container = document.getElementById('grp-' + data.group);
         container.insertAdjacentHTML('beforeend', makeRow(id, data.label, data.host, data.port, data.proto));
-        setRow(id, data.ok, data.ms, data.proto === 'udp');
+        const logCls = setRow(id, data);
 
-        if (!data.ok) {
-          log(`✗ ${data.label} (${data.host}:${data.port} ${data.proto.toUpperCase()}) — ${data.err || 'échec'}`, 'l-fail');
-        } else {
+        if (data.untestable) {
+          log(`ℹ ${data.label} (${data.host}:${data.port} ${data.proto.toUpperCase()}) — non testable sans session WebRTC active`, 'l-info');
+        } else if (data.ok) {
           log(`✓ ${data.label} (${data.host}:${data.port} ${data.proto.toUpperCase()}) — ${data.ms} ms`, 'l-ok');
-        }
-
-        if (data.ok && data.group === 'app' && data.port === 443 && !document.getElementById('m-lat').textContent.includes('ms')) {
-          document.getElementById('m-lat').textContent = data.ms + ' ms';
+          if (data.group === 'app' && data.port === 443 && document.getElementById('m-lat').textContent === '—') {
+            document.getElementById('m-lat').textContent = data.ms + ' ms';
+          }
+        } else {
+          log(`✗ ${data.label} (${data.host}:${data.port} ${data.proto.toUpperCase()}) — ${data.err || 'échec'}`, logCls);
         }
 
         document.getElementById('prog').style.width = data.progress + '%';
         return;
       }
 
-      if (data.type === 'done') {
-        es.close();
-        resolve();
-      }
+      if (data.type === 'done') { es.close(); resolve(); }
     };
 
-    es.onerror = () => {
-      log('Erreur de connexion au serveur de diagnostic', 'l-fail');
-      es.close();
-      resolve();
-    };
+    es.onerror = () => { log('Erreur SSE — connexion au serveur perdue', 'l-fail'); es.close(); resolve(); };
   });
 }
 
@@ -358,7 +349,7 @@ function checkRTCCaps() {
   RTC_FEATURES.forEach(f => {
     const ok   = f.test();
     const chip = document.createElement('span');
-    chip.className = 'chip ' + (ok ? 'ok' : 'fail');
+    chip.className   = 'chip ' + (ok ? 'ok' : 'fail');
     chip.textContent = (ok ? '✓ ' : '✗ ') + f.label;
     bar.appendChild(chip);
     log((ok ? '✓ ' : '✗ ') + f.label + ' : ' + (ok ? 'disponible' : 'indisponible'), ok ? 'l-ok' : 'l-fail');
@@ -374,14 +365,12 @@ function runICE() {
     log('Collecte des candidats ICE (max 7 s)…', 'l-info');
     let pc;
     try {
-      pc = new RTCPeerConnection({
-        iceServers: [
-          { urls: 'stun:stun.l.google.com:19302' },
-          { urls: 'stun:stun1.l.google.com:19302' },
-          { urls: ['turn:148.253.97.205:443?transport=udp','turn:148.253.97.205:443?transport=tcp','turns:148.253.97.205:443'], username: 'diagnostic', credential: 'diagnostic' },
-          { urls: ['turn:142.44.49.112:443?transport=udp','turn:142.44.49.112:443?transport=tcp'], username: 'diagnostic', credential: 'diagnostic' },
-        ]
-      });
+      pc = new RTCPeerConnection({ iceServers: [
+        { urls: 'stun:stun.l.google.com:19302' },
+        { urls: 'stun:stun1.l.google.com:19302' },
+        { urls: ['turn:148.253.97.205:443?transport=udp','turn:148.253.97.205:443?transport=tcp','turns:148.253.97.205:443'], username: 'diagnostic', credential: 'diagnostic' },
+        { urls: ['turn:142.44.49.112:443?transport=udp','turn:142.44.49.112:443?transport=tcp'], username: 'diagnostic', credential: 'diagnostic' },
+      ]});
     } catch(e) {
       document.getElementById('ice-result').textContent = 'Erreur : ' + e.message;
       return resolve();
@@ -397,10 +386,11 @@ function runICE() {
         log('ICE — aucun candidat collecté', 'l-fail');
       } else {
         el.innerHTML = [...types].map(t =>
-          `<span class="chip ${t==='relay'||t==='srflx'?'ok':''}">` + (labels[t]||t) + '</span>'
+          `<span class="chip ${t==='relay'||t==='srflx'?'ok':''}">${labels[t]||t}</span>`
         ).join('');
-        log('ICE — types : ' + [...types].join(', '), 'l-ok');
-        if (types.has('relay')) log('✓ TURN relay fonctionnel — les flux passeront en réseau restrictif', 'l-ok');
+        log('ICE — types détectés : ' + [...types].join(', '), 'l-ok');
+        if (types.has('relay')) log('✓ TURN relay fonctionnel — les flux passeront même derrière un réseau restrictif', 'l-ok');
+        if (types.has('srflx')) log('✓ STUN public accessible — connexion directe possible', 'l-ok');
       }
       resolve();
     };
@@ -418,44 +408,50 @@ function runICE() {
 
 // ── Orchestration ─────────────────────────────────────────────────────────────
 async function startTests() {
-  const btn    = document.getElementById('btn');
-  const badge  = document.getElementById('status-badge');
+  const btn   = document.getElementById('btn');
+  const badge = document.getElementById('status-badge');
+  const btnEx = document.getElementById('btn-export');
 
-  btn.disabled = true;
+  btn.disabled  = true;
+  btnEx.disabled = true;
   btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="16" height="16" class="spin"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Tests en cours…';
-  badge.className = 'header-badge running';
+  badge.className   = 'header-badge running';
   badge.textContent = 'En cours…';
 
-  document.getElementById('log').innerHTML      = '';
+  // Reset
+  document.getElementById('log').innerHTML       = '';
   document.getElementById('ice-result').innerHTML = '—';
+  logLines = [];
   ['grp-app','grp-signaling','grp-media','grp-coturn'].forEach(id => {
-    const el = document.getElementById(id);
+    const el   = document.getElementById(id);
     const note = el.querySelector('.note');
     el.innerHTML = note ? note.outerHTML : '';
   });
-
   okCount = 0; failCount = 0; warnCount = 0; rowIndex = 0;
   updateMetrics();
   document.getElementById('m-lat').textContent = '—';
   document.getElementById('prog').style.width  = '0%';
 
   log('=== Démarrage — ' + new Date().toLocaleString('fr-FR') + ' ===', 'l-head');
+  log('Navigateur : ' + navigator.userAgent, 'l-info');
 
   checkRTCCaps();
   await runServerTests();
   await runICE();
 
   document.getElementById('prog').style.width = '100%';
+
   const allOk = failCount === 0;
-  badge.className = 'header-badge ' + (allOk ? 'done-ok' : 'done-warn');
+  badge.className   = 'header-badge ' + (allOk ? 'done-ok' : 'done-warn');
   badge.textContent = allOk ? '✓ Tout OK' : failCount + ' échec(s)';
-  log('=== Terminé — ' + okCount + ' OK · ' + failCount + ' échecs · ' + warnCount + ' avertissements ===', 'l-head');
+
+  log('=== Terminé — ' + okCount + ' OK · ' + failCount + ' échec(s) · ' + warnCount + ' avert. ===', 'l-head');
 
   btn.disabled = false;
+  btnEx.disabled = false;
   btn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg> Relancer';
 }
 
-// Init capacités WebRTC à l'ouverture
 window.addEventListener('load', checkRTCCaps);
 </script>
 </body>

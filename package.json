@@ -1,7 +1,7 @@
 {
   "name": "visio-diagnostic",
   "version": "1.0.0",
-  "description": "Outil de diagnostic réseau pour visio.numerique.gouv.fr",
+  "description": "Outil de diagnostic réseau et navigateur pour visio.numerique.gouv.fr",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
