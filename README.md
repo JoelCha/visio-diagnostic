@@ -85,5 +85,5 @@ visio-diagnostic/
 
 ## Contact
 
-reseau-visio@numerique.gouv.fr
+joel@jchastagnier.fr
 ```
