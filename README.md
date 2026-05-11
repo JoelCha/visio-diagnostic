@@ -2,6 +2,11 @@
 
 Outil de diagnostic réseau complet pour tester la connectivité vers les serveurs de visio.numerique.gouv.fr.
 
+## Utilisation
+
+Ouvrez directement l'outil : [https://visio-diagnostic.onrender.com/](https://visio-diagnostic.onrender.com/)
+
+
 ## Ce que ça teste
 
 | Test | Protocole | Côté |
